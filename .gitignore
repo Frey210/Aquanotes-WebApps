@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+google_sandi_aplikasi.txt
+.pytest_cache/
+test-results/
+playwright-artifacts/
+qa-artifacts/
+playwright-auth-*.png
+refrensi/

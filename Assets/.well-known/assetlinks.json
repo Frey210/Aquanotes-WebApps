@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.areasaku.aquanotes",
+      "sha256_cert_fingerprints": [
+        "39:4D:1F:26:41:DE:E0:98:7C:0A:16:F9:88:C2:DC:02:1A:94:A5:19:11:76:06:7D:30:7B:DA:F9:10:59:A2:11"
+      ]
+    }
+  }
+]

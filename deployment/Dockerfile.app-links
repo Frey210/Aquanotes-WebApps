@@ -1,0 +1,4 @@
+ARG BASE_IMAGE=aquanotes-web:20260905-users
+FROM ${BASE_IMAGE}
+
+COPY Assets/.well-known/assetlinks.json /usr/share/nginx/html/.well-known/assetlinks.json

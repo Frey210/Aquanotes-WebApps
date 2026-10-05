@@ -1,0 +1,11 @@
+.git
+node_modules
+dist
+.env*
+*.log
+google_sandi_aplikasi.txt
+playwright-artifacts
+qa-artifacts
+refrensi
+ide_fitur
+checks
