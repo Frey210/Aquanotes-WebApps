@@ -10,3 +10,4 @@ playwright-artifacts/
 qa-artifacts/
 playwright-auth-*.png
 refrensi/
+graphify-out/

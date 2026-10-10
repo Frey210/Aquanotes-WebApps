@@ -5,6 +5,10 @@ COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
+RUN test -f dist/aquanotes-logo.PNG \
+    && test -f dist/aquanotes-transparant.png \
+    && test -f "dist/logo-Aerasea-putih transparant.png" \
+    && test -f dist/favicon.svg
 
 FROM nginx:1.27-alpine
 
