@@ -57,6 +57,13 @@ devices[3].status = 'inactive';
       }
       await page.emulateMedia({ reducedMotion: 'reduce' });
       assert.equal(await page.locator('.route-view').evaluate(el => getComputedStyle(el).animationName), 'none');
+      await page.evaluate(() => {
+        const fixture = document.createElement('section');
+        fixture.className = 'panel';
+        fixture.innerHTML = '<div class="table-wrap"><table style="min-width:900px"><tbody><tr><td style="width:850px">Synthetic table fixture</td><td><span class="sr-only">Aksi</span></td></tr></tbody></table></div>';
+        document.querySelector('.page').append(fixture);
+      });
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), 'Visually hidden table header must not escape the table scroll container');
       assert.deepEqual(errors, []);
       await page.close();
     }
