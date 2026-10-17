@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { ArrowClockwise, Pause, Play, WarningCircle } from "../icons";
+import { ArrowClockwise, Pause, Play, WarningCircle, ThermometerSimple, Flask, Waves, Gauge, WarningDiamond } from "../icons";
 import { apiFetch } from "../api/client";
 import { EmptyState, ErrorState, PageLoader } from "../components/States";
 import { ModeBadge, StatusBadge } from "../components/StatusBadge";
@@ -20,6 +20,7 @@ const parameterMeta = {
 } satisfies Record<Exclude<keyof SensorReading, "timestamp">, { label: string; unit: string }>;
 
 type Parameter = keyof typeof parameterMeta;
+const parameterIcons = { suhu: ThermometerSimple, ph: Flask, do: Waves, tds: Gauge, ammonia: WarningDiamond, salinitas: Waves };
 
 export function AdminMonitoringPage() {
   const [data, setData] = useState<AdminSensorOverview | null>(null);
@@ -73,8 +74,8 @@ export function AdminMonitoringPage() {
     <PageHeader
       eyebrow="MONITORING ADMIN"
       title="Monitoring sensor"
-      description="Pilih perangkat, pantau kualitas air, dan telusuri tren pengukuran."
-      action={<div className="header-actions"><button className="button secondary" onClick={() => setPaused((value) => !value)}>{paused ? <Play size={18} /> : <Pause size={18} />}{paused ? "Lanjutkan" : "Jeda pembaruan"}</button><button className="icon-button bordered" onClick={() => void load()} aria-label="Perbarui data sensor"><ArrowClockwise size={20} /></button></div>}
+      description="Kualitas air, dalam satu pantauan."
+      action={<div className="header-actions"><button className="button secondary" aria-label={paused ? "Lanjutkan pembaruan" : "Jeda pembaruan"} aria-pressed={paused} onClick={() => setPaused((value) => !value)}>{paused ? <Play size={18} /> : <Pause size={18} />}<span>{paused ? "Lanjutkan" : "Jeda"}</span></button><button className="icon-button bordered" onClick={() => void load()} aria-label="Perbarui data sensor"><ArrowClockwise size={20} /></button></div>}
     />
 
     {error && <ErrorState message={error} retry={load} />}
@@ -82,15 +83,15 @@ export function AdminMonitoringPage() {
       <DeviceNavigator devices={data.devices.map((device) => ({ id: device.id, name: device.name || device.uid, uid: device.uid, location: [device.tambak_name, device.kolam_name].filter(Boolean).join(" / "), status: device.connectivity_status }))} selectedId={deviceId} onSelect={setDeviceId} />
       {selected && <div className="monitor-detail">
       <div className="monitor-device-heading">
-        <div><h2>{selected.name || selected.uid}</h2><p>{selected.user_name || "Belum dimiliki"} · {[selected.tambak_name, selected.kolam_name].filter(Boolean).join(" / ") || "Belum ditempatkan"}</p><code>{selected.uid}</code></div>
-        <div className="monitor-device-status"><StatusBadge status={selected.connectivity_status} /><ModeBadge mode={selected.operational_mode} /><span>Data {formatRelative(selected.latest_data?.timestamp)}</span></div>
+        <div><h2>{selected.name || selected.uid}</h2><p>{[selected.tambak_name, selected.kolam_name].filter(Boolean).join(" / ") || "Lokasi belum diatur"}</p><small className="sensor-availability">{selectedSummaries.filter((item) => item.value != null).length}/6 sensor terbaca</small></div>
+        <div className="monitor-device-status"><StatusBadge status={selected.connectivity_status} />{selected.operational_mode !== "active" && <ModeBadge mode={selected.operational_mode} />}</div>
       </div>
-      {getTelemetryFreshness(selected.latest_data?.timestamp, selected.connection_interval) !== "fresh" && <div className="monitor-data-notice" role="status">Menampilkan data terakhir yang tersimpan. {selected.latest_data ? `Pengukuran: ${formatDateTimeExact(selected.latest_data.timestamp)}.` : "Perangkat belum mengirim data sensor."}</div>}
+      {getTelemetryFreshness(selected.latest_data?.timestamp, selected.connection_interval) !== "fresh" && <div className="monitor-data-notice" role="status"><WarningCircle size={19} aria-hidden="true" /><span>{selected.latest_data ? `Data tersimpan · ${formatRelative(selected.latest_data.timestamp)}` : "Belum ada pembacaan sensor"}</span></div>}
       <div className="admin-parameter-grid" aria-label={`Parameter terbaru ${selected.name || selected.uid}`}>
-        {selectedSummaries.map((item) => <button aria-pressed={parameter === item.key} onClick={() => setParameter(item.key)} className={`sensor-choice ${parameter === item.key ? "selected" : ""} ${item.attention ? "attention" : ""}`} key={item.key}><span className="sensor-choice-label">{item.label}{item.attention && <WarningCircle size={16} weight="fill" aria-label="Perlu diperiksa" />}</span><strong>{formatNumber(item.value)} <small>{item.unit}</small></strong><span className="sensor-choice-note">{item.value == null ? "Tidak ada pembacaan" : item.attention ? "Perlu diperiksa" : "Data tersedia"}</span></button>)}
+        {selectedSummaries.map((item) => { const Icon = parameterIcons[item.key]; return <button aria-label={`${item.label}: ${item.value == null ? "Belum terbaca" : `${formatNumber(item.value)} ${item.unit}`}${item.attention ? ", perlu diperiksa" : ""}`} aria-pressed={parameter === item.key} onClick={() => setParameter(item.key)} className={`sensor-choice sensor-${item.key} ${parameter === item.key ? "selected" : ""} ${item.attention ? "attention" : ""} ${item.value == null ? "unavailable" : ""}`} key={item.key}><Icon className="sensor-symbol" size={22} weight="duotone" aria-hidden="true" /><span className="sensor-choice-label">{item.label}</span><strong>{item.value == null ? "—" : formatNumber(item.value)} <small>{item.value == null ? "" : item.unit}</small></strong>{item.attention && <WarningCircle className="sensor-attention" size={16} weight="fill" aria-label="Perlu diperiksa" />}</button>; })}
       </div>
 
-    <section className="panel chart-panel">
+    <section className="panel chart-panel" key={`${deviceId}-${parameter}`}>
       <div className="chart-heading"><div><h2>Tren {meta.label.toLocaleLowerCase("id")}</h2><p>24 pengukuran terakhir · {meta.unit || "skala pH"}</p></div><div className="chart-timestamps"><strong>{formatNumber(selected.latest_data?.[parameter])} {meta.unit}</strong><small>{formatDateTimeExact(selected.latest_data?.timestamp)}</small></div></div>
       {chartData.length === 0 ? <EmptyState title={`Sensor ${meta.label} belum mengirim data`} description="Sensor mungkin belum terpasang atau perlu diperiksa koneksinya." /> : <div className="chart" role="img" aria-label={`Grafik ${meta.label} untuk ${selected.name || selected.uid}`}><ResponsiveContainer width="100%" height="100%"><AreaChart data={chartData} margin={{ top: 18, right: 18, left: 2, bottom: 8 }}><defs><linearGradient id="adminSensorFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#147fe2" stopOpacity={.16} /><stop offset="100%" stopColor="#147fe2" stopOpacity={.01} /></linearGradient></defs><CartesianGrid stroke="#d9e3ee" strokeDasharray="4 6" vertical={false} /><XAxis dataKey="time" type="number" scale="time" domain={["dataMin", "dataMax"]} minTickGap={40} tickFormatter={(value) => new Intl.DateTimeFormat("id-ID", { hour: "2-digit", minute: "2-digit" }).format(new Date(value))} tickLine={false} tickMargin={10} /><YAxis domain={["auto", "auto"]} tickLine={false} axisLine={false} width={52} tickFormatter={(value) => formatNumber(Number(value))} /><Tooltip labelFormatter={(value) => formatDateTimeExact(new Date(Number(value)).toISOString())} formatter={(value) => [`${formatNumber(Number(value))} ${meta.unit}`, meta.label]} /><Area type="linear" dataKey="value" stroke="#147fe2" strokeWidth={2.5} fill="url(#adminSensorFill)" dot={false} activeDot={{ r: 5 }} connectNulls={false} isAnimationActive={false} /></AreaChart></ResponsiveContainer></div>}
       <div className="chart-axis-note"><span>Waktu pengukuran lokal</span><span>{meta.label} ({meta.unit || "skala pH"})</span></div>

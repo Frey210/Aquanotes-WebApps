@@ -1,330 +1,144 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-17T00:00:00+08:00",
+  "generatedAt": "2026-10-17T04:39:15Z",
   "title": "Design System: Aquanotes",
   "extensions": {
     "colorMeta": {
       "navy": {
         "role": "primary",
-        "displayName": "Aquanotes Navy",
-        "tonalRamp": [
-          "oklch(15% 0.15 255)",
-          "oklch(26% 0.15 255)",
-          "oklch(38% 0.15 255)",
-          "oklch(49% 0.15 255)",
-          "oklch(61% 0.15 255)",
-          "oklch(72% 0.15 255)",
-          "oklch(84% 0.15 255)",
-          "oklch(95% 0.15 255)"
-        ]
+        "displayName": "Aquanotes Navy"
       },
       "primary": {
         "role": "primary",
-        "displayName": "Action Blue",
-        "tonalRamp": [
-          "oklch(15% 0.18 250)",
-          "oklch(26% 0.18 250)",
-          "oklch(38% 0.18 250)",
-          "oklch(49% 0.18 250)",
-          "oklch(61% 0.18 250)",
-          "oklch(72% 0.18 250)",
-          "oklch(84% 0.18 250)",
-          "oklch(95% 0.18 250)"
-        ]
+        "displayName": "Action Blue"
       },
       "primary-hover": {
         "role": "primary",
-        "displayName": "Action Blue Hover",
-        "tonalRamp": [
-          "oklch(15% 0.18 250)",
-          "oklch(26% 0.18 250)",
-          "oklch(38% 0.18 250)",
-          "oklch(49% 0.18 250)",
-          "oklch(61% 0.18 250)",
-          "oklch(72% 0.18 250)",
-          "oklch(84% 0.18 250)",
-          "oklch(95% 0.18 250)"
-        ]
+        "displayName": "Action Blue Hover"
       },
       "cyan": {
         "role": "secondary",
-        "displayName": "Brand Cyan",
-        "tonalRamp": [
-          "oklch(15% 0.14 230)",
-          "oklch(26% 0.14 230)",
-          "oklch(38% 0.14 230)",
-          "oklch(49% 0.14 230)",
-          "oklch(61% 0.14 230)",
-          "oklch(72% 0.14 230)",
-          "oklch(84% 0.14 230)",
-          "oklch(95% 0.14 230)"
-        ]
+        "displayName": "Brand Cyan"
       },
       "sidebar": {
         "role": "primary",
-        "displayName": "Sidebar Blue",
-        "tonalRamp": [
-          "oklch(15% 0.14 255)",
-          "oklch(26% 0.14 255)",
-          "oklch(38% 0.14 255)",
-          "oklch(49% 0.14 255)",
-          "oklch(61% 0.14 255)",
-          "oklch(72% 0.14 255)",
-          "oklch(84% 0.14 255)",
-          "oklch(95% 0.14 255)"
-        ]
+        "displayName": "Sidebar Blue"
       },
       "sidebar-text": {
         "role": "neutral",
-        "displayName": "Navigation Text",
-        "tonalRamp": [
-          "oklch(15% 0.035 250)",
-          "oklch(26% 0.035 250)",
-          "oklch(38% 0.035 250)",
-          "oklch(49% 0.035 250)",
-          "oklch(61% 0.035 250)",
-          "oklch(72% 0.035 250)",
-          "oklch(84% 0.035 250)",
-          "oklch(95% 0.035 250)"
-        ]
+        "displayName": "Navigation Text"
       },
       "text": {
         "role": "neutral",
-        "displayName": "Reading Ink",
-        "tonalRamp": [
-          "oklch(15% 0.035 255)",
-          "oklch(26% 0.035 255)",
-          "oklch(38% 0.035 255)",
-          "oklch(49% 0.035 255)",
-          "oklch(61% 0.035 255)",
-          "oklch(72% 0.035 255)",
-          "oklch(84% 0.035 255)",
-          "oklch(95% 0.035 255)"
-        ]
+        "displayName": "Reading Ink"
       },
       "muted": {
         "role": "neutral",
-        "displayName": "Metadata Slate",
-        "tonalRamp": [
-          "oklch(15% 0.035 255)",
-          "oklch(26% 0.035 255)",
-          "oklch(38% 0.035 255)",
-          "oklch(49% 0.035 255)",
-          "oklch(61% 0.035 255)",
-          "oklch(72% 0.035 255)",
-          "oklch(84% 0.035 255)",
-          "oklch(95% 0.035 255)"
-        ]
+        "displayName": "Metadata Slate"
       },
       "border": {
         "role": "neutral",
-        "displayName": "Cool Divider",
-        "tonalRamp": [
-          "oklch(15% 0.018 250)",
-          "oklch(26% 0.018 250)",
-          "oklch(38% 0.018 250)",
-          "oklch(49% 0.018 250)",
-          "oklch(61% 0.018 250)",
-          "oklch(72% 0.018 250)",
-          "oklch(84% 0.018 250)",
-          "oklch(95% 0.018 250)"
-        ]
+        "displayName": "Cool Divider"
       },
       "page": {
         "role": "neutral",
-        "displayName": "Cool Workspace",
-        "tonalRamp": [
-          "oklch(15% 0.012 250)",
-          "oklch(26% 0.012 250)",
-          "oklch(38% 0.012 250)",
-          "oklch(49% 0.012 250)",
-          "oklch(61% 0.012 250)",
-          "oklch(72% 0.012 250)",
-          "oklch(84% 0.012 250)",
-          "oklch(95% 0.012 250)"
-        ]
+        "displayName": "Cool Workspace"
       },
       "surface": {
         "role": "neutral",
-        "displayName": "White Surface",
-        "tonalRamp": [
-          "oklch(15% 0 250)",
-          "oklch(26% 0 250)",
-          "oklch(38% 0 250)",
-          "oklch(49% 0 250)",
-          "oklch(61% 0 250)",
-          "oklch(72% 0 250)",
-          "oklch(84% 0 250)",
-          "oklch(95% 0 250)"
-        ]
+        "displayName": "White Surface"
       },
       "surface-muted": {
         "role": "neutral",
-        "displayName": "Muted Surface",
-        "tonalRamp": [
-          "oklch(15% 0.015 250)",
-          "oklch(26% 0.015 250)",
-          "oklch(38% 0.015 250)",
-          "oklch(49% 0.015 250)",
-          "oklch(61% 0.015 250)",
-          "oklch(72% 0.015 250)",
-          "oklch(84% 0.015 250)",
-          "oklch(95% 0.015 250)"
-        ]
+        "displayName": "Muted Surface"
       },
       "selected": {
         "role": "primary",
-        "displayName": "Selected Wash",
-        "tonalRamp": [
-          "oklch(15% 0.04 250)",
-          "oklch(26% 0.04 250)",
-          "oklch(38% 0.04 250)",
-          "oklch(49% 0.04 250)",
-          "oklch(61% 0.04 250)",
-          "oklch(72% 0.04 250)",
-          "oklch(84% 0.04 250)",
-          "oklch(95% 0.04 250)"
-        ]
+        "displayName": "Selected Wash"
       },
       "selected-border": {
         "role": "primary",
-        "displayName": "Selected Boundary",
-        "tonalRamp": [
-          "oklch(15% 0.09 250)",
-          "oklch(26% 0.09 250)",
-          "oklch(38% 0.09 250)",
-          "oklch(49% 0.09 250)",
-          "oklch(61% 0.09 250)",
-          "oklch(72% 0.09 250)",
-          "oklch(84% 0.09 250)",
-          "oklch(95% 0.09 250)"
-        ]
+        "displayName": "Selected Boundary"
       },
       "online": {
         "role": "status",
-        "displayName": "Online Teal",
-        "tonalRamp": [
-          "oklch(15% 0.11 185)",
-          "oklch(26% 0.11 185)",
-          "oklch(38% 0.11 185)",
-          "oklch(49% 0.11 185)",
-          "oklch(61% 0.11 185)",
-          "oklch(72% 0.11 185)",
-          "oklch(84% 0.11 185)",
-          "oklch(95% 0.11 185)"
-        ]
+        "displayName": "Online Teal"
       },
       "stale": {
         "role": "status",
-        "displayName": "Stale Amber",
-        "tonalRamp": [
-          "oklch(15% 0.13 70)",
-          "oklch(26% 0.13 70)",
-          "oklch(38% 0.13 70)",
-          "oklch(49% 0.13 70)",
-          "oklch(61% 0.13 70)",
-          "oklch(72% 0.13 70)",
-          "oklch(84% 0.13 70)",
-          "oklch(95% 0.13 70)"
-        ]
+        "displayName": "Stale Amber"
       },
       "offline": {
         "role": "status",
-        "displayName": "Offline Red",
-        "tonalRamp": [
-          "oklch(15% 0.16 30)",
-          "oklch(26% 0.16 30)",
-          "oklch(38% 0.16 30)",
-          "oklch(49% 0.16 30)",
-          "oklch(61% 0.16 30)",
-          "oklch(72% 0.16 30)",
-          "oklch(84% 0.16 30)",
-          "oklch(95% 0.16 30)"
-        ]
+        "displayName": "Offline Red"
       },
       "maintenance": {
         "role": "status",
-        "displayName": "Maintenance Violet",
-        "tonalRamp": [
-          "oklch(15% 0.14 290)",
-          "oklch(26% 0.14 290)",
-          "oklch(38% 0.14 290)",
-          "oklch(49% 0.14 290)",
-          "oklch(61% 0.14 290)",
-          "oklch(72% 0.14 290)",
-          "oklch(84% 0.14 290)",
-          "oklch(95% 0.14 290)"
-        ]
+        "displayName": "Maintenance Violet"
       },
       "online-tint": {
         "role": "status",
-        "displayName": "Online Wash",
-        "tonalRamp": [
-          "oklch(15% 0.04 185)",
-          "oklch(26% 0.04 185)",
-          "oklch(38% 0.04 185)",
-          "oklch(49% 0.04 185)",
-          "oklch(61% 0.04 185)",
-          "oklch(72% 0.04 185)",
-          "oklch(84% 0.04 185)",
-          "oklch(95% 0.04 185)"
-        ]
+        "displayName": "Online Wash"
       },
       "stale-tint": {
         "role": "status",
-        "displayName": "Stale Wash",
-        "tonalRamp": [
-          "oklch(15% 0.04 70)",
-          "oklch(26% 0.04 70)",
-          "oklch(38% 0.04 70)",
-          "oklch(49% 0.04 70)",
-          "oklch(61% 0.04 70)",
-          "oklch(72% 0.04 70)",
-          "oklch(84% 0.04 70)",
-          "oklch(95% 0.04 70)"
-        ]
+        "displayName": "Stale Wash"
       },
       "offline-tint": {
         "role": "status",
-        "displayName": "Offline Wash",
-        "tonalRamp": [
-          "oklch(15% 0.04 30)",
-          "oklch(26% 0.04 30)",
-          "oklch(38% 0.04 30)",
-          "oklch(49% 0.04 30)",
-          "oklch(61% 0.04 30)",
-          "oklch(72% 0.04 30)",
-          "oklch(84% 0.04 30)",
-          "oklch(95% 0.04 30)"
-        ]
+        "displayName": "Offline Wash"
       },
       "maintenance-tint": {
         "role": "status",
-        "displayName": "Maintenance Wash",
-        "tonalRamp": [
-          "oklch(15% 0.04 290)",
-          "oklch(26% 0.04 290)",
-          "oklch(38% 0.04 290)",
-          "oklch(49% 0.04 290)",
-          "oklch(61% 0.04 290)",
-          "oklch(72% 0.04 290)",
-          "oklch(84% 0.04 290)",
-          "oklch(95% 0.04 290)"
-        ]
+        "displayName": "Maintenance Wash"
       },
       "chart-user": {
         "role": "primary",
-        "displayName": "User Chart Blue",
-        "tonalRamp": [
-          "oklch(15% 0.19 250)",
-          "oklch(26% 0.19 250)",
-          "oklch(38% 0.19 250)",
-          "oklch(49% 0.19 250)",
-          "oklch(61% 0.19 250)",
-          "oklch(72% 0.19 250)",
-          "oklch(84% 0.19 250)",
-          "oklch(95% 0.19 250)"
-        ]
+        "displayName": "User Chart Blue"
+      },
+      "sensor-selected": {
+        "displayName": "Selected Sensor Blue",
+        "role": "primary"
+      },
+      "sensor-border": {
+        "displayName": "Sensor Boundary",
+        "role": "neutral"
+      },
+      "sensor-unavailable": {
+        "displayName": "Unavailable Sensor",
+        "role": "neutral"
+      },
+      "ring-online": {
+        "displayName": "Ring Online",
+        "role": "status"
+      },
+      "ring-late": {
+        "displayName": "Ring Late",
+        "role": "status"
+      },
+      "ring-offline": {
+        "displayName": "Ring Offline",
+        "role": "status"
+      },
+      "ring-unknown": {
+        "displayName": "Ring Unknown",
+        "role": "status"
+      },
+      "activity-blue": {
+        "displayName": "Activity Blue Wash",
+        "role": "secondary"
+      },
+      "activity-amber": {
+        "displayName": "Activity Amber Wash",
+        "role": "secondary"
+      },
+      "activity-violet": {
+        "displayName": "Activity Violet Wash",
+        "role": "secondary"
+      },
+      "activity-slate": {
+        "displayName": "Activity Slate Wash",
+        "role": "neutral"
       }
     },
     "typographyMeta": {
@@ -364,28 +178,53 @@
         "name": "dialog",
         "value": "0 28px 80px rgb(4 28 59 / .28)",
         "purpose": "Confirmation dialog elevation."
+      },
+      {
+        "name": "chart-card",
+        "value": "0 5px 22px rgb(7 69 144 / .045)",
+        "purpose": "Soft monitoring chart depth."
+      },
+      {
+        "name": "priority-hover",
+        "value": "0 5px 18px rgb(7 69 144 / .06)",
+        "purpose": "Priority card hover."
+      },
+      {
+        "name": "mobile-dock",
+        "value": "0 -6px 24px rgb(7 69 144 / .055)",
+        "purpose": "Separate fixed bottom navigation from content."
       }
     ],
     "motion": [
       {
-        "name": "ease-out",
-        "value": "cubic-bezier(.2, .8, .2, 1)",
-        "purpose": "Existing --ease-out token."
+        "name": "route-entry",
+        "value": "260ms cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Opacity .65 to 1 and translateY 8px to 0."
       },
       {
-        "name": "control-color",
-        "value": "160ms ease",
-        "purpose": "Button and form color/border transitions; no movement transform."
+        "name": "drawer",
+        "value": "260ms cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Sidebar transform transition."
       },
       {
-        "name": "device-selection",
-        "value": "150ms ease",
-        "purpose": "Navigator background and border transitions."
+        "name": "chart-context",
+        "value": "220ms ease-out",
+        "purpose": "Chart wrapper opacity .6 to 1 on context change; series entrance stays disabled."
+      },
+      {
+        "name": "fleet-ring",
+        "value": "400ms ease",
+        "purpose": "Stroke-dasharray changes driven by real fleet counts."
+      },
+      {
+        "name": "tile-states",
+        "value": "180ms ease",
+        "purpose": "Sensor colors, activity hover, priority-card treatment and dock state."
       },
       {
         "name": "reduced-motion",
-        "value": ".01ms",
-        "purpose": "Reduced-motion media query shortens animation and transition duration; charts already disable entrance animation."
+        "value": "none",
+        "purpose": "Remove route/chart/scrim animations and ring/drawer/tile/dock transitions in reduced-motion mode."
       }
     ],
     "breakpoints": [
@@ -404,6 +243,10 @@
       {
         "name": "narrow",
         "value": "620px"
+      },
+      {
+        "name": "overview-stack",
+        "value": "1100px"
       }
     ]
   },
@@ -452,18 +295,18 @@
       "name": "Sensor selection card",
       "kind": "card",
       "refersTo": "sensor-choice-selected",
-      "description": "Selected parameter button, contained by the rounded monitoring group.",
-      "html": "<div class=\"ds-sensor-group\"><button class=\"ds-sensor\" aria-pressed=\"true\"><span class=\"ds-sensor-label\">Suhu</span><strong class=\"ds-sensor-value\">28,4 <small>°C</small></strong><span class=\"ds-sensor-note\">Data tersedia</span></button></div>",
-      "css": ".ds-sensor-group{border:1px solid var(--border,#d9e3ed);border-radius:12px;overflow:hidden;background:var(--surface,#fff)}.ds-sensor{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;width:100%;min-height:106px;display:grid;align-content:start;gap:6px;padding:14px 10px;border:0;border-radius:0;background:var(--surface,#fff);color:var(--text,#102033);text-align:left;cursor:pointer}.ds-sensor:hover{background:#f1f7fc}.ds-sensor[aria-pressed=true]{background:#edf6ff;outline:2px solid var(--primary,#147fe2);outline-offset:-2px}.ds-sensor:focus-visible{outline:3px solid var(--navy,#074590);outline-offset:-3px}.ds-sensor-label{min-height:18px;color:var(--muted,#506176);font-size:.72rem;font-weight:600}.ds-sensor-value{font-size:1.25rem;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.ds-sensor-value small{color:var(--muted,#506176);font-size:.65rem;font-weight:500}.ds-sensor-note{color:var(--muted,#506176);font-size:.66rem;font-weight:400}"
+      "description": "Separate duotone parameter tile with solid-blue selected state and explicit pressed semantics.",
+      "html": "<button class=\"ds-sensor\" aria-pressed=\"true\"><svg class=\"ds-sensor-icon\" width=\"23\" height=\"23\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M10 14V5a2 2 0 0 1 4 0v9a5 5 0 1 1-4 0\" fill=\"currentColor\" fill-opacity=\".2\"/><path d=\"M12 9v9\"/><circle cx=\"12\" cy=\"18\" r=\"1.5\" fill=\"currentColor\"/></svg><span class=\"ds-sensor-label\">Suhu</span><strong class=\"ds-sensor-value\">28,4 <small>°C</small></strong></button>",
+      "css": ".ds-sensor{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;min-width:0;min-height:112px;display:grid;align-content:start;gap:7px;padding:13px;border:1px solid #dae7f2;border-radius:12px;background:#fff;color:var(--text,#102033);text-align:left;cursor:pointer;transition:background 180ms ease,color 180ms ease,border-color 180ms ease}.ds-sensor:hover{background:#f1f7fc}.ds-sensor[aria-pressed=true]{color:#fff;background:#0b65bd;border-color:#0b65bd}.ds-sensor:focus-visible{outline:3px solid var(--cyan,#26a9e0);outline-offset:2px}.ds-sensor-icon{color:#b37312}.ds-sensor-label{color:var(--muted,#506176);font-size:.7rem;font-weight:600}.ds-sensor-value{font-size:1.35rem;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.ds-sensor-value small{color:var(--muted,#506176);font-size:.65rem;font-weight:500}.ds-sensor[aria-pressed=true] :is(.ds-sensor-icon,.ds-sensor-label,.ds-sensor-value,.ds-sensor-value small){color:#fff}.ds-sensor.ds-unavailable:not([aria-pressed=true]){background:#eef2f6;border-color:#e3eaf1}.ds-sensor.ds-unavailable .ds-sensor-value{color:#6b8096}@media(prefers-reduced-motion:reduce){.ds-sensor{transition:none}}"
     }
   ],
   "narrative": {
     "northStar": "Clean Aquaculture Operations",
-    "overview": "Aquanotes uses its established blue identity as the stable frame around a light, precise workspace. White surfaces, navy text, quiet dividers, and tabular readings keep operational information easy to scan. Aquanotes is the primary product identity; Aerasea remains a smaller endorsement using official assets.\n\nThis is an extraction of the implemented system, not a replacement style proposal. The normative values above reflect `src/styles.css` and the current shell and monitoring components. `design_gudie.md` remains a historical direction document; where it differs, this code-derived specification describes the current implementation. Route-specific composition belongs in `.impeccable/surfaces/monitoring.md`.",
+    "overview": "Aquanotes uses its established blue identity as the stable frame around a light, precise workspace. White surfaces, navy text, soft activity tiles, duotone icons, and tabular readings keep operational information easy to scan without overloading mobile screens. Aquanotes is the primary product identity; Aerasea remains a smaller endorsement using official assets.\n\nThis is an extraction of the implemented system, not a replacement style proposal. The normative values above reflect `src/styles.css` and the current shell and monitoring components. `design_gudie.md` remains a historical direction document; where it differs, this code-derived specification describes the current implementation. Route-specific composition belongs in `.impeccable/surfaces/monitoring.md` and `.impeccable/surfaces/overview.md`.",
     "keyCharacteristics": [
-      "Blue navigation frame with white, flat working surfaces.",
+      "Blue navigation frame with soft tiles and restrained depth.",
       "Compact labels, explicit state text, and tabular sensor values.",
-      "Restrained interaction motion with visible keyboard focus."
+      "Purposeful page, drawer, and chart transitions with visible keyboard focus."
     ],
     "rules": [
       {
@@ -473,24 +316,24 @@
       },
       {
         "name": "The Honest Reading Rule",
-        "body": "Preserve units and local timestamps, show missing readings as N/A, and never turn a real zero into missing data.",
+        "body": "Preserve units and local timestamps, show missing sensor-tile readings as an em dash (—) and measurement-table readings as N/A, and never turn a real zero into missing data.",
         "section": "typography"
       },
       {
-        "name": "The Flat Workspace Rule",
-        "body": "Do not restore decorative lift or hover translation to working panels, primary buttons, or sidebar links.",
+        "name": "The Restrained Depth Rule",
+        "body": "Keep primary buttons and sidebar links steady; reserve gentle lift for implemented activity tiles and priority-card treatment.",
         "section": "elevation"
       }
     ],
     "dos": [
       "Do preserve the blue Aquanotes identity and smaller Aerasea endorsement.",
-      "Do use flat working surfaces, subtle borders, and tabular sensor values.",
+      "Do use soft surfaces, restrained depth, and tabular sensor values.",
       "Do retain state labels, units, local timestamps, and keyboard focus.",
       "Do keep missing readings distinct from real zero values."
     ],
     "donts": [
       "Don't replace official logos with invented marks or distort their proportions.",
-      "Don't restore card lift, sidebar translation, or primary-button scaling in the workspace.",
+      "Don't add sidebar translation or primary-button scaling; keep gentle lift scoped to activity tiles.",
       "Don't present stale or offline readings as live telemetry.",
       "Don't use the historical guide's proposed font, palette, or breakpoints as if they were the shipped values."
     ]

@@ -32,15 +32,19 @@ devices[1].historical_data[10].suhu = null;
         else if (endpoint === '/admin/sensors') data = { generated_at: new Date().toISOString(), devices, parameters: [] };
         else if (endpoint === '/monitoring') data = { current_device_id: 1, current_kolam_id: 1, kolam_list: [{ id: 1, nama: 'Kolam uji', devices }] };
         else if (endpoint === '/devices/') data = devices;
-        else if (endpoint.endsWith('/thresholds')) data = { temp_min: 20, temp_max: 32, ph_min: 6, ph_max: 9 };
+        else if (endpoint.endsWith('/thresholds')) data = { temp_min: 20, temp_max: 27, ph_min: 8.2, ph_max: 9 };
         else throw new Error(`Unexpected API request: ${endpoint}`);
         await route.fulfill({ json: data });
       });
-      for (const viewport of [{ name: 'desktop', width: 1440, height: 900 }, { name: 'laptop', width: 1280, height: 800 }, { name: 'mobile', width: 390, height: 844 }, { name: 'small-mobile', width: 375, height: 812 }]) {
+      for (const viewport of [{ name: 'desktop', width: 1440, height: 900 }, { name: 'laptop', width: 1280, height: 800 }, { name: 'mobile', width: 390, height: 844 }, { name: 'small-mobile', width: 360, height: 800 }, { name: 'narrow-mobile', width: 320, height: 700 }]) {
         await page.setViewportSize(viewport);
         await page.goto(`${base}/${role === 'admin' ? 'admin' : 'app'}/monitoring`);
         await page.getByRole('heading', { name: 'Tren suhu', exact: false }).waitFor();
         await page.locator('.recharts-area').waitFor();
+        if (role === 'user') {
+          await page.locator('.sensor-choice.high .sensor-alert').first().waitFor();
+          await page.locator('.sensor-choice.low .sensor-alert').first().waitFor();
+        }
         const box = await page.locator('.chart').boundingBox();
         assert(box.y < (viewport.width > 1024 ? 550 : 850), `${role}/${viewport.name}: chart too far down: ${box.y}`);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), `${role}/${viewport.name}: horizontal overflow`);
@@ -60,13 +64,13 @@ devices[1].historical_data[10].suhu = null;
         } else {
           await page.locator('.mobile-device-select select').selectOption('31');
         }
-        await page.locator('.monitor-device-heading h2').filter({ hasText: 'Perangkat 31' }).waitFor();
+        await page.waitForFunction(() => document.querySelector('.monitor-device-heading h2')?.textContent.includes('Perangkat 31'));
         await page.evaluate(() => scrollTo(0, 0));
         await page.screenshot({ path: path.join(artifacts, `${role}-${viewport.name}.png`), fullPage: true });
         console.log(`${role}/${viewport.name}: chart_y=${Math.round(box.y)} passed`);
       }
       await page.locator('.mobile-device-select select').selectOption('2');
-      await page.locator('.monitor-device-heading h2').filter({ hasText: 'Perangkat 2' }).waitFor();
+      await page.waitForFunction(() => document.querySelector('.monitor-device-heading h2')?.textContent.includes('Perangkat 2'));
       const curve = await page.locator('.recharts-area-curve').getAttribute('d');
       assert.equal((curve.match(/M/g) || []).length, 2, `${role}: null sample must interrupt the line`);
       if (role === 'admin') {

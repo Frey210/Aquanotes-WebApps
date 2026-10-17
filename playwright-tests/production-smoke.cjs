@@ -27,6 +27,16 @@ const baseUrl = "https://aquanotes.farlabs.my.id";
     await page.goto(`${baseUrl}/admin/devices`);
     await page.getByRole("heading", { name: "Daftar device" }).waitFor();
     await page.screenshot({ path: path.join(process.env.PW_ARTIFACT_DIR, "aquanotes-production-admin.png"), fullPage: true });
+    for (const viewport of [{ width: 360, height: 800 }, { width: 1440, height: 900 }]) {
+      await page.setViewportSize(viewport);
+      for (const route of ["/admin", "/admin/monitoring", "/admin/devices", "/admin/users", "/admin/firmware", "/admin/profile"]) {
+        await page.goto(`${baseUrl}${route}`);
+        await page.locator("main h1").waitFor();
+        const bounds = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, content: document.documentElement.scrollWidth }));
+        if (bounds.content > bounds.viewport) throw new Error(`${route} overflow at ${viewport.width}px: ${JSON.stringify(bounds)}`);
+        if (route === "/admin" || route === "/admin/monitoring") await page.screenshot({ path: path.join(process.env.PW_ARTIFACT_DIR, `production-${route === "/admin" ? "overview" : "monitoring"}-${viewport.width}.png`), fullPage: true });
+      }
+    }
     if (errors.length) throw new Error(`Browser errors: ${errors.join(" | ")}`);
     console.log("production_browser_smoke=ok");
   } finally {

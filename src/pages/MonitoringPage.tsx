@@ -109,9 +109,9 @@ export function MonitoringPage() {
     <PageHeader
       eyebrow="MONITORING"
       title="Monitoring kualitas air"
-      description="Nilai sensor dan tren pengukuran dari perangkat di tambak Anda."
+      description="Kualitas air, dalam satu pantauan."
       action={<div className="header-actions">
-        <button className="button secondary" onClick={() => setPaused((value) => !value)}>{paused ? <Play size={18} /> : <Pause size={18} />}{paused ? "Lanjutkan update" : "Jeda update"}</button>
+        <button className="button secondary" aria-label={paused ? "Lanjutkan update" : "Jeda update"} aria-pressed={paused} onClick={() => setPaused((value) => !value)}>{paused ? <Play size={18} /> : <Pause size={18} />}<span>{paused ? "Lanjutkan" : "Jeda"}</span></button>
         <button className="icon-button bordered" onClick={() => void load()} aria-label="Refresh sekarang"><ArrowClockwise size={20} /></button>
       </div>}
     />
@@ -120,23 +120,25 @@ export function MonitoringPage() {
       <DeviceNavigator devices={devices.map((device) => { const registered = registry.find((item) => item.id === device.id); const state = getTelemetryFreshness(device.latest_data?.timestamp, registered?.connection_interval || 5); return { id: device.id, name: device.name || registered?.uid || "Tanpa nama", uid: registered?.uid || "", location: device.kolam, status: state === "fresh" ? "online" : state === "unknown" ? "never_seen" : state === "silent" ? "offline" : "stale" }; })} selectedId={deviceId} onSelect={setDeviceId} />
       <div className="monitor-detail">
       <div className="monitor-device-heading">
-        <div><h2>{selected?.name || selectedRegistry?.uid}</h2><p>{selected?.kolam}</p><code>{selectedRegistry?.uid}</code></div>
-        <div className="monitor-device-status"><span className={`status-badge ${freshnessTone[freshness]}`}>{freshnessLabel[freshness]}</span><span>{lastTimestamp ? formatRelative(lastTimestamp) : "Belum ada pengukuran"}</span><small>Interval {interval} menit</small></div>
+        <div><h2>{selected?.name || selectedRegistry?.uid}</h2><p>{selected?.kolam}</p><small className="sensor-availability">{parameters.filter((item) => selected?.latest_data?.[item.key] != null).length}/6 sensor terbaca</small></div>
+        <div className="monitor-device-status"><span className={`status-badge ${freshnessTone[freshness]}`}>{freshnessLabel[freshness]}</span></div>
       </div>
-      {freshness !== "fresh" && <div className="monitor-data-notice" role="status"><strong>{freshnessLabel[freshness]}.</strong> Nilai dan grafik menampilkan data terakhir yang tersimpan.</div>}
+      {freshness !== "fresh" && <div className="monitor-data-notice" role="status"><WarningDiamond size={19} aria-hidden="true" /><span>Data tersimpan · {lastTimestamp ? formatRelative(lastTimestamp) : "belum ada pengukuran"}</span></div>}
       <div className={`reading-grid ${freshness !== "fresh" ? "reading-stale" : ""}`}>{parameters.map((item) => {
         const value = selected?.latest_data?.[item.key];
         const visual = getReadingVisual(item.key, value, thresholds?.deviceId === deviceId ? thresholds.values : null);
         const Icon = item.icon;
         const meterStyle = { "--reading-position": `${visual.position}%`, "--reading-min": `${visual.minPosition ?? 0}%`, "--reading-max": `${visual.maxPosition ?? 100}%` } as CSSProperties;
-        return <button aria-pressed={parameter === item.key} onClick={() => setParameter(item.key)} className={`reading-card sensor-choice ${visual.status} ${parameter === item.key ? "selected" : ""}`} key={item.key}>
+        return <button title={limitLabel(visual.min, visual.max, item.unit)} aria-label={`${item.label}: ${value == null ? "Belum terbaca" : `${formatNumber(value)} ${item.unit}, ${visual.label}`}`} aria-pressed={parameter === item.key} onClick={() => setParameter(item.key)} className={`reading-card sensor-choice sensor-${item.key} ${visual.status} ${value == null ? "unavailable" : ""} ${parameter === item.key ? "selected" : ""}`} key={item.key}>
           <div className="reading-icon" aria-hidden="true"><Icon size={23} weight={visual.status === "normal" ? "duotone" : "fill"} /></div>
-          <div className="reading-copy"><span>{item.label}</span><strong>{formatNumber(value)} <small>{item.unit}</small></strong></div>
+          <Icon className="sensor-symbol" size={22} weight="duotone" aria-hidden="true" />
+          {(visual.status === "high" || visual.status === "low") && <span className="sensor-alert"><WarningDiamond size={12} weight="fill" aria-hidden="true" />{visual.status === "high" ? "Tinggi" : "Rendah"}</span>}
+          <div className="reading-copy"><span>{item.label}</span><strong>{value == null ? "—" : formatNumber(value)} <small>{value == null ? "" : item.unit}</small></strong></div>
           <div className="reading-state"><b>{visual.label}</b><small>{limitLabel(visual.min, visual.max, item.unit)}</small></div>
           {(visual.min != null || visual.max != null) && value != null && <div className="reading-meter" role="meter" aria-label={`Posisi ${item.label}`} aria-valuemin={visual.rangeMin} aria-valuemax={visual.rangeMax} aria-valuenow={value} aria-valuetext={`${formatNumber(value)} ${item.unit}, ${visual.label}`} style={meterStyle}><i />{visual.min != null && <span className="reading-limit min" />}{visual.max != null && <span className="reading-limit max" />}</div>}
         </button>;
       })}</div>
-      <section className="panel chart-panel">
+      <section className="panel chart-panel" key={`${deviceId}-${parameter}`}>
         <div className="chart-heading">
           <div>
             <h2>Tren {meta.label.toLocaleLowerCase("id")} <small>{meta.unit || "skala pH"}</small></h2>

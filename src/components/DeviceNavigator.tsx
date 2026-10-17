@@ -26,7 +26,7 @@ export function DeviceNavigator({ devices, selectedId, onSelect }: {
   return <aside className="device-navigator" aria-label="Pemilih perangkat">
     <label className="mobile-device-select">Perangkat dipantau
       <select value={selectedId ?? ""} onChange={(event) => onSelect(Number(event.target.value))}>
-        {devices.map((device) => <option key={device.id} value={device.id}>{device.name} · {device.location || device.uid}</option>)}
+        {devices.map((device) => <option key={device.id} value={device.id}>{device.name}{device.location && device.location !== device.name ? ` · ${device.location}` : ""}</option>)}
       </select>
     </label>
     <div className="navigator-desktop">
