@@ -19,13 +19,25 @@ Production smoke meliputi /admin, monitoring, perangkat, pengguna, firmware, dan
 
 ## Deployment dan rollback
 
-Image baru: `aquanotes-web:20261017-mobile-v2`.
+Status: aktif di production sejak 17 Oktober 2026 sekitar 12:44 GMT+8.
+Image final: `aquanotes-web:20261017-mobile-v2.1` (`4d9bcb77b911`).
+Source UI: `a5034d9`; patch containing block tabel: `bc1a833`.
+Artifact SHA-256: `737cc250125456a8a83c9454216f2d14e66126d57e072d5617cc874157ad1071`.
+Direktori server: `/home/dockeradmin/releases/aquanotes-web-20261017-mobile-v2.1`.
+Browser production smoke lulus pada enam halaman admin di 360px dan 1440px.
+Container API sebelum/sesudah identik; container preflight sudah dihapus.
+
+Patch tambahan: label `sr-only` pada kolom aksi tabel melewati scroll container
+karena absolute positioning memakai containing block di luar tabel. Menambahkan
+`position: relative` ke table wrapper memperbaiki overflow tanpa menghilangkan
+label aksesibilitas atau menyembunyikan overflow body. Ada test regresi khusus.
+
 Rollback: `aquanotes-web:20261017-monitoring-workspace`.
 
 Gunakan artifact `dist` lokal dengan Dockerfile.artifact. Uji image dahulu pada port staging internal; kemudian ganti service web saja.
 
 ```sh
-WEB_IMAGE=aquanotes-web:20261017-mobile-v2 \
+WEB_IMAGE=aquanotes-web:20261017-mobile-v2.1 \
   docker compose -p stage2 -f deployment/compose.web.yml up -d --no-deps web
 ```
 
