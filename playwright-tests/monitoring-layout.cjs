@@ -11,6 +11,7 @@ const devices = Array.from({ length: 31 }, (_, index) => {
   const latest = { suhu: 28.6, ph: 7.9, do: 6.8, tds: 0, ammonia: null, salinitas: 22.4, timestamp: new Date().toISOString() };
   return { id, uid: `AER2023AQ${String(id).padStart(4, '0')}`, name: id === 1 ? 'AQ Selada' : `Perangkat ${id}`, user_id: 1, user_name: 'Pengguna uji', tambak_name: 'Tambak uji', kolam_name: `Kolam ${id}`, connectivity_status: id % 3 ? 'online' : 'offline', operational_mode: 'active', connection_interval: 5, last_seen: latest.timestamp, attention_parameters: [], latest_data: latest, historical_data: Array.from({ length: 24 }, (_, i) => ({ ...latest, suhu: 28 + Math.sin(i / 3) * .6, timestamp: new Date(Date.now() - (23 - i) * 60000).toISOString() })) };
 });
+devices[1].historical_data[10].suhu = null;
 
 (async () => {
   fs.mkdirSync(artifacts, { recursive: true });
@@ -64,6 +65,10 @@ const devices = Array.from({ length: 31 }, (_, index) => {
         await page.screenshot({ path: path.join(artifacts, `${role}-${viewport.name}.png`), fullPage: true });
         console.log(`${role}/${viewport.name}: chart_y=${Math.round(box.y)} passed`);
       }
+      await page.locator('.mobile-device-select select').selectOption('2');
+      await page.locator('.monitor-device-heading h2').filter({ hasText: 'Perangkat 2' }).waitFor();
+      const curve = await page.locator('.recharts-area-curve').getAttribute('d');
+      assert.equal((curve.match(/M/g) || []).length, 2, `${role}: null sample must interrupt the line`);
       if (role === 'admin') {
         await page.locator('.fleet-disclosure > summary').click();
         assert.equal(await page.locator('.fleet-disclosure tbody tr').count(), 31);
