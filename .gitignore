@@ -11,3 +11,6 @@ qa-artifacts/
 playwright-auth-*.png
 refrensi/
 graphify-out/
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/

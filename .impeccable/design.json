@@ -1,0 +1,498 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T00:00:00+08:00",
+  "title": "Design System: Aquanotes",
+  "extensions": {
+    "colorMeta": {
+      "navy": {
+        "role": "primary",
+        "displayName": "Aquanotes Navy",
+        "tonalRamp": [
+          "oklch(15% 0.15 255)",
+          "oklch(26% 0.15 255)",
+          "oklch(38% 0.15 255)",
+          "oklch(49% 0.15 255)",
+          "oklch(61% 0.15 255)",
+          "oklch(72% 0.15 255)",
+          "oklch(84% 0.15 255)",
+          "oklch(95% 0.15 255)"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "tonalRamp": [
+          "oklch(15% 0.18 250)",
+          "oklch(26% 0.18 250)",
+          "oklch(38% 0.18 250)",
+          "oklch(49% 0.18 250)",
+          "oklch(61% 0.18 250)",
+          "oklch(72% 0.18 250)",
+          "oklch(84% 0.18 250)",
+          "oklch(95% 0.18 250)"
+        ]
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Action Blue Hover",
+        "tonalRamp": [
+          "oklch(15% 0.18 250)",
+          "oklch(26% 0.18 250)",
+          "oklch(38% 0.18 250)",
+          "oklch(49% 0.18 250)",
+          "oklch(61% 0.18 250)",
+          "oklch(72% 0.18 250)",
+          "oklch(84% 0.18 250)",
+          "oklch(95% 0.18 250)"
+        ]
+      },
+      "cyan": {
+        "role": "secondary",
+        "displayName": "Brand Cyan",
+        "tonalRamp": [
+          "oklch(15% 0.14 230)",
+          "oklch(26% 0.14 230)",
+          "oklch(38% 0.14 230)",
+          "oklch(49% 0.14 230)",
+          "oklch(61% 0.14 230)",
+          "oklch(72% 0.14 230)",
+          "oklch(84% 0.14 230)",
+          "oklch(95% 0.14 230)"
+        ]
+      },
+      "sidebar": {
+        "role": "primary",
+        "displayName": "Sidebar Blue",
+        "tonalRamp": [
+          "oklch(15% 0.14 255)",
+          "oklch(26% 0.14 255)",
+          "oklch(38% 0.14 255)",
+          "oklch(49% 0.14 255)",
+          "oklch(61% 0.14 255)",
+          "oklch(72% 0.14 255)",
+          "oklch(84% 0.14 255)",
+          "oklch(95% 0.14 255)"
+        ]
+      },
+      "sidebar-text": {
+        "role": "neutral",
+        "displayName": "Navigation Text",
+        "tonalRamp": [
+          "oklch(15% 0.035 250)",
+          "oklch(26% 0.035 250)",
+          "oklch(38% 0.035 250)",
+          "oklch(49% 0.035 250)",
+          "oklch(61% 0.035 250)",
+          "oklch(72% 0.035 250)",
+          "oklch(84% 0.035 250)",
+          "oklch(95% 0.035 250)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Reading Ink",
+        "tonalRamp": [
+          "oklch(15% 0.035 255)",
+          "oklch(26% 0.035 255)",
+          "oklch(38% 0.035 255)",
+          "oklch(49% 0.035 255)",
+          "oklch(61% 0.035 255)",
+          "oklch(72% 0.035 255)",
+          "oklch(84% 0.035 255)",
+          "oklch(95% 0.035 255)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Metadata Slate",
+        "tonalRamp": [
+          "oklch(15% 0.035 255)",
+          "oklch(26% 0.035 255)",
+          "oklch(38% 0.035 255)",
+          "oklch(49% 0.035 255)",
+          "oklch(61% 0.035 255)",
+          "oklch(72% 0.035 255)",
+          "oklch(84% 0.035 255)",
+          "oklch(95% 0.035 255)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Cool Divider",
+        "tonalRamp": [
+          "oklch(15% 0.018 250)",
+          "oklch(26% 0.018 250)",
+          "oklch(38% 0.018 250)",
+          "oklch(49% 0.018 250)",
+          "oklch(61% 0.018 250)",
+          "oklch(72% 0.018 250)",
+          "oklch(84% 0.018 250)",
+          "oklch(95% 0.018 250)"
+        ]
+      },
+      "page": {
+        "role": "neutral",
+        "displayName": "Cool Workspace",
+        "tonalRamp": [
+          "oklch(15% 0.012 250)",
+          "oklch(26% 0.012 250)",
+          "oklch(38% 0.012 250)",
+          "oklch(49% 0.012 250)",
+          "oklch(61% 0.012 250)",
+          "oklch(72% 0.012 250)",
+          "oklch(84% 0.012 250)",
+          "oklch(95% 0.012 250)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "White Surface",
+        "tonalRamp": [
+          "oklch(15% 0 250)",
+          "oklch(26% 0 250)",
+          "oklch(38% 0 250)",
+          "oklch(49% 0 250)",
+          "oklch(61% 0 250)",
+          "oklch(72% 0 250)",
+          "oklch(84% 0 250)",
+          "oklch(95% 0 250)"
+        ]
+      },
+      "surface-muted": {
+        "role": "neutral",
+        "displayName": "Muted Surface",
+        "tonalRamp": [
+          "oklch(15% 0.015 250)",
+          "oklch(26% 0.015 250)",
+          "oklch(38% 0.015 250)",
+          "oklch(49% 0.015 250)",
+          "oklch(61% 0.015 250)",
+          "oklch(72% 0.015 250)",
+          "oklch(84% 0.015 250)",
+          "oklch(95% 0.015 250)"
+        ]
+      },
+      "selected": {
+        "role": "primary",
+        "displayName": "Selected Wash",
+        "tonalRamp": [
+          "oklch(15% 0.04 250)",
+          "oklch(26% 0.04 250)",
+          "oklch(38% 0.04 250)",
+          "oklch(49% 0.04 250)",
+          "oklch(61% 0.04 250)",
+          "oklch(72% 0.04 250)",
+          "oklch(84% 0.04 250)",
+          "oklch(95% 0.04 250)"
+        ]
+      },
+      "selected-border": {
+        "role": "primary",
+        "displayName": "Selected Boundary",
+        "tonalRamp": [
+          "oklch(15% 0.09 250)",
+          "oklch(26% 0.09 250)",
+          "oklch(38% 0.09 250)",
+          "oklch(49% 0.09 250)",
+          "oklch(61% 0.09 250)",
+          "oklch(72% 0.09 250)",
+          "oklch(84% 0.09 250)",
+          "oklch(95% 0.09 250)"
+        ]
+      },
+      "online": {
+        "role": "status",
+        "displayName": "Online Teal",
+        "tonalRamp": [
+          "oklch(15% 0.11 185)",
+          "oklch(26% 0.11 185)",
+          "oklch(38% 0.11 185)",
+          "oklch(49% 0.11 185)",
+          "oklch(61% 0.11 185)",
+          "oklch(72% 0.11 185)",
+          "oklch(84% 0.11 185)",
+          "oklch(95% 0.11 185)"
+        ]
+      },
+      "stale": {
+        "role": "status",
+        "displayName": "Stale Amber",
+        "tonalRamp": [
+          "oklch(15% 0.13 70)",
+          "oklch(26% 0.13 70)",
+          "oklch(38% 0.13 70)",
+          "oklch(49% 0.13 70)",
+          "oklch(61% 0.13 70)",
+          "oklch(72% 0.13 70)",
+          "oklch(84% 0.13 70)",
+          "oklch(95% 0.13 70)"
+        ]
+      },
+      "offline": {
+        "role": "status",
+        "displayName": "Offline Red",
+        "tonalRamp": [
+          "oklch(15% 0.16 30)",
+          "oklch(26% 0.16 30)",
+          "oklch(38% 0.16 30)",
+          "oklch(49% 0.16 30)",
+          "oklch(61% 0.16 30)",
+          "oklch(72% 0.16 30)",
+          "oklch(84% 0.16 30)",
+          "oklch(95% 0.16 30)"
+        ]
+      },
+      "maintenance": {
+        "role": "status",
+        "displayName": "Maintenance Violet",
+        "tonalRamp": [
+          "oklch(15% 0.14 290)",
+          "oklch(26% 0.14 290)",
+          "oklch(38% 0.14 290)",
+          "oklch(49% 0.14 290)",
+          "oklch(61% 0.14 290)",
+          "oklch(72% 0.14 290)",
+          "oklch(84% 0.14 290)",
+          "oklch(95% 0.14 290)"
+        ]
+      },
+      "online-tint": {
+        "role": "status",
+        "displayName": "Online Wash",
+        "tonalRamp": [
+          "oklch(15% 0.04 185)",
+          "oklch(26% 0.04 185)",
+          "oklch(38% 0.04 185)",
+          "oklch(49% 0.04 185)",
+          "oklch(61% 0.04 185)",
+          "oklch(72% 0.04 185)",
+          "oklch(84% 0.04 185)",
+          "oklch(95% 0.04 185)"
+        ]
+      },
+      "stale-tint": {
+        "role": "status",
+        "displayName": "Stale Wash",
+        "tonalRamp": [
+          "oklch(15% 0.04 70)",
+          "oklch(26% 0.04 70)",
+          "oklch(38% 0.04 70)",
+          "oklch(49% 0.04 70)",
+          "oklch(61% 0.04 70)",
+          "oklch(72% 0.04 70)",
+          "oklch(84% 0.04 70)",
+          "oklch(95% 0.04 70)"
+        ]
+      },
+      "offline-tint": {
+        "role": "status",
+        "displayName": "Offline Wash",
+        "tonalRamp": [
+          "oklch(15% 0.04 30)",
+          "oklch(26% 0.04 30)",
+          "oklch(38% 0.04 30)",
+          "oklch(49% 0.04 30)",
+          "oklch(61% 0.04 30)",
+          "oklch(72% 0.04 30)",
+          "oklch(84% 0.04 30)",
+          "oklch(95% 0.04 30)"
+        ]
+      },
+      "maintenance-tint": {
+        "role": "status",
+        "displayName": "Maintenance Wash",
+        "tonalRamp": [
+          "oklch(15% 0.04 290)",
+          "oklch(26% 0.04 290)",
+          "oklch(38% 0.04 290)",
+          "oklch(49% 0.04 290)",
+          "oklch(61% 0.04 290)",
+          "oklch(72% 0.04 290)",
+          "oklch(84% 0.04 290)",
+          "oklch(95% 0.04 290)"
+        ]
+      },
+      "chart-user": {
+        "role": "primary",
+        "displayName": "User Chart Blue",
+        "tonalRamp": [
+          "oklch(15% 0.19 250)",
+          "oklch(26% 0.19 250)",
+          "oklch(38% 0.19 250)",
+          "oklch(49% 0.19 250)",
+          "oklch(61% 0.19 250)",
+          "oklch(72% 0.19 250)",
+          "oklch(84% 0.19 250)",
+          "oklch(95% 0.19 250)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Page heading",
+        "purpose": "Compact page identification."
+      },
+      "title": {
+        "displayName": "Device title",
+        "purpose": "Selected device identity."
+      },
+      "body": {
+        "displayName": "Supporting copy",
+        "purpose": "Page description and readable context."
+      },
+      "label": {
+        "displayName": "Parameter label",
+        "purpose": "Compact sensor naming."
+      },
+      "reading": {
+        "displayName": "Sensor reading",
+        "purpose": "Current numeric reading; use tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "input-focus",
+        "value": "0 0 0 3px rgb(25 138 255 / .13)",
+        "purpose": "Input focus halo."
+      },
+      {
+        "name": "tooltip",
+        "value": "0 12px 30px rgb(15 23 42 / .12)",
+        "purpose": "User monitoring chart tooltip."
+      },
+      {
+        "name": "dialog",
+        "value": "0 28px 80px rgb(4 28 59 / .28)",
+        "purpose": "Confirmation dialog elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.2, .8, .2, 1)",
+        "purpose": "Existing --ease-out token."
+      },
+      {
+        "name": "control-color",
+        "value": "160ms ease",
+        "purpose": "Button and form color/border transitions; no movement transform."
+      },
+      {
+        "name": "device-selection",
+        "value": "150ms ease",
+        "purpose": "Navigator background and border transitions."
+      },
+      {
+        "name": "reduced-motion",
+        "value": ".01ms",
+        "purpose": "Reduced-motion media query shortens animation and transition duration; charts already disable entrance animation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "1280px"
+      },
+      {
+        "name": "native-device-select",
+        "value": "1024px"
+      },
+      {
+        "name": "navigation-drawer",
+        "value": "860px"
+      },
+      {
+        "name": "narrow",
+        "value": "620px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Compact main action; color changes without movement.",
+      "html": "<button class=\"ds-primary\">Simpan perubahan</button>",
+      "css": ".ds-primary{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 15px;border:1px solid transparent;border-radius:var(--radius-md,10px);font-size:.84rem;font-weight:700;cursor:pointer;transition:color 160ms ease,background 160ms ease,border-color 160ms ease;color:var(--surface,#fff);background:var(--primary,#147fe2)}.ds-primary:hover:not(:disabled){background:var(--primary-hover,#0d6fc9)}.ds-primary:focus-visible{outline:2px solid var(--primary,#147fe2);outline-offset:2px;}.ds-primary:disabled{opacity:.5;cursor:not-allowed}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Safe alternative or polling control.",
+      "html": "<button class=\"ds-secondary\">Jeda pembaruan</button>",
+      "css": ".ds-secondary{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 15px;border:1px solid transparent;border-radius:var(--radius-md,10px);font-size:.84rem;font-weight:700;cursor:pointer;transition:color 160ms ease,background 160ms ease,border-color 160ms ease;color:#183a61;background:var(--surface,#fff);border-color:#cbd7e4}.ds-secondary:focus-visible{outline:2px solid var(--primary,#147fe2);outline-offset:2px;}.ds-secondary:disabled{opacity:.5;cursor:not-allowed}"
+    },
+    {
+      "name": "Labeled field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Standard form field, with visible label and blue focus halo.",
+      "html": "<label class=\"ds-field\">Nama perangkat<input class=\"ds-input\" placeholder=\"Nama perangkat\" autocomplete=\"off\"></label>",
+      "css": ".ds-field{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;display:grid;gap:7px;color:#2c3c51;font-size:.83rem;font-weight:700}.ds-input{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;min-height:44px;padding:9px 12px;color:var(--text,#102033);background:var(--surface,#fff);border:1px solid #c4d1de;border-radius:var(--radius-md,10px);caret-color:var(--primary,#147fe2);transition:border-color 160ms ease,box-shadow 160ms ease}.ds-input::placeholder{color:#8996a8}.ds-input:hover{border-color:#9bacc0}.ds-input:focus,.ds-input:focus-visible{border-color:var(--primary,#147fe2);box-shadow:0 0 0 3px rgb(25 138 255 / .13);outline:none}"
+    },
+    {
+      "name": "Sidebar navigation",
+      "kind": "nav",
+      "refersTo": "navigation-active",
+      "description": "Blue brand frame with an explicit active destination.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navigasi contoh\"><a class=\"ds-link ds-current\" href=\"#monitoring\" aria-current=\"page\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 4v16h16M7 15l4-5 4 3 5-7\"/></svg>Monitoring</a><a class=\"ds-link\" href=\"#device\">Device</a></nav>",
+      "css": ".ds-nav{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;display:grid;gap:5px;padding:12px;background:#063a78;border-radius:8px}.ds-link{display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 12px;color:#c6daef;border-radius:8px;font-size:.83rem;font-weight:650;text-decoration:none;transition:color 180ms ease,background 180ms ease}.ds-link:hover{color:#fff;background:rgb(255 255 255 / .07)}.ds-link.ds-current{color:#fff;background:var(--primary,#147fe2)}.ds-link:focus-visible{outline:2px solid var(--primary,#147fe2);outline-offset:2px;}"
+    },
+    {
+      "name": "Connectivity badge",
+      "kind": "chip",
+      "refersTo": "status-online",
+      "description": "A read-only state label with an inline icon; not an action.",
+      "html": "<span class=\"ds-status\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m4.7 7.7-5.5 5.5a1 1 0 0 1-1.4 0l-2.5-2.5 1.4-1.4 1.8 1.8 4.8-4.8z\"/></svg>Online</span>",
+      "css": ".ds-status{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:999px;font-size:.7rem;font-weight:750;white-space:nowrap;color:var(--online,#087d78);background:#e1f5f1}"
+    },
+    {
+      "name": "Sensor selection card",
+      "kind": "card",
+      "refersTo": "sensor-choice-selected",
+      "description": "Selected parameter button, contained by the rounded monitoring group.",
+      "html": "<div class=\"ds-sensor-group\"><button class=\"ds-sensor\" aria-pressed=\"true\"><span class=\"ds-sensor-label\">Suhu</span><strong class=\"ds-sensor-value\">28,4 <small>°C</small></strong><span class=\"ds-sensor-note\">Data tersedia</span></button></div>",
+      "css": ".ds-sensor-group{border:1px solid var(--border,#d9e3ed);border-radius:12px;overflow:hidden;background:var(--surface,#fff)}.ds-sensor{font-family:\"Segoe UI Variable Text\",\"Segoe UI\",ui-sans-serif,system-ui,sans-serif;width:100%;min-height:106px;display:grid;align-content:start;gap:6px;padding:14px 10px;border:0;border-radius:0;background:var(--surface,#fff);color:var(--text,#102033);text-align:left;cursor:pointer}.ds-sensor:hover{background:#f1f7fc}.ds-sensor[aria-pressed=true]{background:#edf6ff;outline:2px solid var(--primary,#147fe2);outline-offset:-2px}.ds-sensor:focus-visible{outline:3px solid var(--navy,#074590);outline-offset:-3px}.ds-sensor-label{min-height:18px;color:var(--muted,#506176);font-size:.72rem;font-weight:600}.ds-sensor-value{font-size:1.25rem;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.ds-sensor-value small{color:var(--muted,#506176);font-size:.65rem;font-weight:500}.ds-sensor-note{color:var(--muted,#506176);font-size:.66rem;font-weight:400}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Clean Aquaculture Operations",
+    "overview": "Aquanotes uses its established blue identity as the stable frame around a light, precise workspace. White surfaces, navy text, quiet dividers, and tabular readings keep operational information easy to scan. Aquanotes is the primary product identity; Aerasea remains a smaller endorsement using official assets.\n\nThis is an extraction of the implemented system, not a replacement style proposal. The normative values above reflect `src/styles.css` and the current shell and monitoring components. `design_gudie.md` remains a historical direction document; where it differs, this code-derived specification describes the current implementation. Route-specific composition belongs in `.impeccable/surfaces/monitoring.md`.",
+    "keyCharacteristics": [
+      "Blue navigation frame with white, flat working surfaces.",
+      "Compact labels, explicit state text, and tabular sensor values.",
+      "Restrained interaction motion with visible keyboard focus."
+    ],
+    "rules": [
+      {
+        "name": "The Explicit Status Rule",
+        "body": "Pair status color with readable status text; timestamps remain visible beside the data they qualify.",
+        "section": "colors"
+      },
+      {
+        "name": "The Honest Reading Rule",
+        "body": "Preserve units and local timestamps, show missing readings as N/A, and never turn a real zero into missing data.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Workspace Rule",
+        "body": "Do not restore decorative lift or hover translation to working panels, primary buttons, or sidebar links.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the blue Aquanotes identity and smaller Aerasea endorsement.",
+      "Do use flat working surfaces, subtle borders, and tabular sensor values.",
+      "Do retain state labels, units, local timestamps, and keyboard focus.",
+      "Do keep missing readings distinct from real zero values."
+    ],
+    "donts": [
+      "Don't replace official logos with invented marks or distort their proportions.",
+      "Don't restore card lift, sidebar translation, or primary-button scaling in the workspace.",
+      "Don't present stale or offline readings as live telemetry.",
+      "Don't use the historical guide's proposed font, palette, or breakpoints as if they were the shipped values."
+    ]
+  }
+}
