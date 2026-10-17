@@ -174,7 +174,7 @@ General panels and primary buttons remain restrained; the topbar is opaque witho
 
 **The Restrained Depth Rule.** Keep primary buttons and sidebar links steady; reserve gentle lift for implemented activity tiles and priority-card treatment.
 
-Route entry and drawer movement use (260ms), chart context changes crossfade over (220ms), and fleet ring changes transition over (400ms). Reduced motion removes these animations and transitions; chart-series entrance animation stays disabled.
+Route entry and drawer movement use (260ms), chart context changes crossfade over (220ms), and fleet ring changes transition over (400ms). Chart series reveal and data updates use (750ms) ease-out. Reduced motion removes spatial transitions and series animation via Recharts' `isAnimationActive="auto"`.
 
 ## Shapes
 
@@ -204,7 +204,7 @@ General panels use surface, a one-pixel border, and (22px) padding without shado
 
 ### Sensor choices and charts
 
-Parameter controls are real buttons with `aria-pressed`, label, current value, unit, and reading state. Separate tiles use duotone icons and a one-pixel border. Selected controls use solid sensor-selected blue and white content; keyboard focus uses a cyan outline (3px) offset by (2px). Unavailable unselected tiles use a muted surface. Previous visible reading-state and meter rows are hidden. Charts show one parameter at a time, a local-time axis, and a native disclosure containing the numeric measurements. Preserve null gaps (`connectNulls=false`) and disabled series entrance animation; wrapper context changes crossfade. Keep stale notices visible rather than implying live data.
+Parameter controls are real buttons with `aria-pressed`, label, current value, unit, and reading state. Separate tiles use duotone icons and a one-pixel border. Selected controls use solid sensor-selected blue and white content; keyboard focus uses a cyan outline (3px) offset by (2px). Unavailable unselected tiles use a muted surface. Previous visible reading-state and meter rows are hidden. Charts show one parameter at a time, a local-time axis, and a native disclosure containing the numeric measurements. Use monotone-X curves with round strokes, preserve null gaps (`connectNulls=false`), and animate series entrance and data updates with reduced-motion support; wrapper context changes crossfade. Keep stale notices visible rather than implying live data.
 
 ### Fleet health, activities, and priorities
 

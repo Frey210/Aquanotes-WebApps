@@ -14,4 +14,4 @@ FIRST VIEWPORT: Header kompak; navigator perangkat selebar 248px di kiri; identi
 
 FORM: Struktur operasional dipatok oleh permintaan pengguna dan konfirmasi monitoring harian; gunakan kontrol web standar.
 
-FINISH: Perpindahan perangkat mempertahankan posisi grafik, parameter aktif memiliki isi biru dan aria-pressed. Grafik crossfade saat konteks berubah, halaman memiliki transisi masuk, dan semua motion menghormati reduced motion. Lebar 320/360px wajib tidak memiliki page overflow. Navigasi cepat bawah memudahkan penggunaan mobile.
+FINISH: Perpindahan perangkat mempertahankan posisi grafik, parameter aktif memiliki isi biru dan aria-pressed. Grafik memakai kurva monotone-X, reveal dan transisi data 750ms ease-out, serta crossfade saat konteks berubah. Semua motion menghormati reduced motion; celah null tetap terputus dan nilai asli tetap tersedia. Lebar 320/360px wajib tidak memiliki page overflow. Navigasi cepat bawah memudahkan penggunaan mobile.

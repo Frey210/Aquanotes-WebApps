@@ -158,7 +158,7 @@ export function MonitoringPage() {
               <YAxis domain={["auto", "auto"]} tickLine={false} axisLine={false} width={52} tickMargin={8} tickFormatter={(value) => formatNumber(Number(value))} label={{ value: meta.unit || "pH", angle: -90, position: "insideLeft", fill: "#718096", fontSize: 11 }} />
               <Tooltip labelFormatter={(value) => formatDateTimeExact(new Date(Number(value)).toISOString())} formatter={(value) => [`${formatNumber(Number(value))}${meta.unit ? ` ${meta.unit}` : ""}`, meta.label]} contentStyle={{ border: "1px solid #cbd7e4", borderRadius: 10, boxShadow: "0 12px 30px rgb(15 23 42 / .12)" }} cursor={{ stroke: "#8ba1b8", strokeDasharray: "4 4" }} />
               {lastChartTimestamp && <ReferenceLine x={lastChartTimestamp} stroke={freshness === "fresh" ? "#087d78" : "#9a5800"} strokeDasharray="3 5" label={{ value: "Data terakhir", position: "insideTopRight", fill: freshness === "fresh" ? "#087d78" : "#9a5800", fontSize: 11 }} />}
-              <Area type="linear" dataKey="value" name={meta.label} stroke="#198AFF" strokeWidth={2.5} fill="url(#telemetryFill)" dot={false} activeDot={{ r: 5 }} connectNulls={false} isAnimationActive={false} />
+              <Area type="monotoneX" dataKey="value" name={meta.label} stroke="#198AFF" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" fill="url(#telemetryFill)" dot={false} activeDot={{ r: 5 }} connectNulls={false} isAnimationActive="auto" animationDuration={750} animationEasing="ease-out" />
             </AreaChart>
           </ResponsiveContainer>
         </div>}
