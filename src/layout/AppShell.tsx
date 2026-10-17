@@ -8,7 +8,7 @@ const userLinks = [
   { to: "/app/monitoring", label: "Monitoring", icon: ChartLine },
   { to: "/app/farms", label: "Tambak & Kolam", icon: Waves },
   { to: "/app/devices", label: "Device", icon: Cpu },
-  { to: "/app/alerts", label: "Notifikasi", icon: Bell },
+  { to: "/app/alerts", label: "Alarm", icon: Bell },
   { to: "/app/profile", label: "Profil", icon: UserCircle },
 ];
 const adminLinks = [

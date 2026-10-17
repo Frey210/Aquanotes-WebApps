@@ -29,6 +29,13 @@ devices[1].historical_data[10].suhu = null;
         const endpoint = pathname.replace('/api', '');
         let data;
         if (endpoint === '/users/session') data = { id: 1, name: 'Pengguna uji', email: 'test@example.invalid', role };
+        else if (/\/monitoring\/devices\/\d+\/history/.test(endpoint)) {
+          const id = Number(endpoint.split('/')[3]);
+          const parameter = new URL(route.request().url()).searchParams.get('parameter');
+          const readings = devices.find((device) => device.id === id).historical_data;
+          const last = readings.map((reading) => reading[parameter]).findLastIndex((value) => value != null);
+          data = { readings: last < 0 ? [] : readings.slice(Math.max(0, last-23), last+1), next_before_id: null };
+        }
         else if (endpoint === '/admin/sensors') data = { generated_at: new Date().toISOString(), devices, parameters: [] };
         else if (endpoint === '/monitoring') data = { current_device_id: 1, current_kolam_id: 1, kolam_list: [{ id: 1, nama: 'Kolam uji', devices }] };
         else if (endpoint === '/devices/') data = devices;
@@ -74,7 +81,7 @@ devices[1].historical_data[10].suhu = null;
           await page.locator('.sensor-choice.low .sensor-alert').first().waitFor();
         }
         const box = await page.locator('.chart').boundingBox();
-        assert(box.y < (viewport.width > 1024 ? 550 : 850), `${role}/${viewport.name}: chart too far down: ${box.y}`);
+        assert(box.y < (viewport.width > 1024 ? Math.min(600, viewport.height * .75) : 850), `${role}/${viewport.name}: chart too far down: ${box.y}`);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), `${role}/${viewport.name}: horizontal overflow`);
         const broken = await page.locator('img').evaluateAll((images) => images.filter((image) => !image.complete || !image.naturalWidth).map((image) => image.src));
         assert.equal(broken.length, 0, `Broken logos: ${broken}`);

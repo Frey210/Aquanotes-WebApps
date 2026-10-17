@@ -9,6 +9,8 @@ import { getReadingVisual } from "../utils/readingStatus";
 import { getTelemetryFreshness, type TelemetryFreshness } from "../utils/telemetry";
 import { PageHeader } from "./UserDashboard";
 import { DeviceNavigator } from "../components/DeviceNavigator";
+import { SensorHistoryControls, useSensorHistory } from "../components/SensorHistory";
+import { Link } from "react-router-dom";
 
 const parameters = [
   { key: "suhu", label: "Suhu", unit: "°C", icon: ThermometerSimple },
@@ -91,13 +93,14 @@ export function MonitoringPage() {
   const selectedRegistry = registry.find((device) => device.id === deviceId);
   const meta = parameters.find((item) => item.key === parameter)!;
   const lastTimestamp = selected?.latest_data?.timestamp;
+  const history = useSensorHistory(deviceId, parameter, lastTimestamp, selected?.historical_data || []);
   const interval = selectedRegistry?.connection_interval || 5;
   const freshness = getTelemetryFreshness(lastTimestamp, interval);
-  const chartData = useMemo(() => (selected?.historical_data || []).flatMap((reading) => {
+  const chartData = useMemo(() => history.readings.flatMap((reading) => {
     const time = reading.timestamp ? parseApiDate(reading.timestamp).getTime() : Number.NaN;
     const value = reading[parameter];
     return Number.isFinite(time) ? [{ time, value: value != null && Number.isFinite(value) ? value : null }] : [];
-  }), [selected, parameter]);
+  }), [history.readings, parameter]);
   const firstTimestamp = chartData[0]?.time;
   const lastChartTimestamp = chartData.at(-1)?.time;
   const spansDays = Boolean(firstTimestamp && lastChartTimestamp && new Date(firstTimestamp).toDateString() !== new Date(lastChartTimestamp).toDateString());
@@ -111,6 +114,7 @@ export function MonitoringPage() {
       title="Monitoring kualitas air"
       description="Kualitas air, dalam satu pantauan."
       action={<div className="header-actions">
+        <Link className="button secondary" to={`/app/alerts/settings${deviceId ? `?device=${deviceId}` : ""}`}>Atur alarm</Link>
         <button className="button secondary" aria-label={paused ? "Lanjutkan update" : "Jeda update"} aria-pressed={paused} onClick={() => setPaused((value) => !value)}>{paused ? <Play size={18} /> : <Pause size={18} />}<span>{paused ? "Lanjutkan" : "Jeda"}</span></button>
         <button className="icon-button bordered" onClick={() => void load()} aria-label="Refresh sekarang"><ArrowClockwise size={20} /></button>
       </div>}
@@ -134,6 +138,7 @@ export function MonitoringPage() {
           <Icon className="sensor-symbol" size={22} weight="duotone" aria-hidden="true" />
           {(visual.status === "high" || visual.status === "low") && <span className="sensor-alert"><WarningDiamond size={12} weight="fill" aria-hidden="true" />{visual.status === "high" ? "Tinggi" : "Rendah"}</span>}
           <div className="reading-copy"><span>{item.label}</span><strong>{value == null ? "—" : formatNumber(value)} <small>{value == null ? "" : item.unit}</small></strong></div>
+          {value == null && <small className="sensor-unavailable-label">Tidak tersedia</small>}
           <div className="reading-state"><b>{visual.label}</b><small>{limitLabel(visual.min, visual.max, item.unit)}</small></div>
           {(visual.min != null || visual.max != null) && value != null && <div className="reading-meter" role="meter" aria-label={`Posisi ${item.label}`} aria-valuemin={visual.rangeMin} aria-valuemax={visual.rangeMax} aria-valuenow={value} aria-valuetext={`${formatNumber(value)} ${item.unit}, ${visual.label}`} style={meterStyle}><i />{visual.min != null && <span className="reading-limit min" />}{visual.max != null && <span className="reading-limit max" />}</div>}
         </button>;
@@ -141,15 +146,15 @@ export function MonitoringPage() {
       <section className="panel chart-panel" key={`${deviceId}-${parameter}`}>
         <div className="chart-heading">
           <div>
-            <h2>Tren {meta.label.toLocaleLowerCase("id")} <small>{meta.unit || "skala pH"}</small></h2>
+            <h2>{selected?.latest_data?.[parameter] == null ? "Riwayat" : "Tren"} {meta.label.toLocaleLowerCase("id")} <small>{meta.unit || "skala pH"}</small></h2>
             <p>24 pengukuran terakhir · {paused ? "Pembaruan dijeda" : `Diperbarui ${formatDateTime(syncedAt)}`}</p>
           </div>
           <div className="chart-timestamps">
             <strong>{formatNumber(selected?.latest_data?.[parameter])} {meta.unit}</strong>
-            <small>{formatDateTimeExact(lastTimestamp)}</small>
+            <small>{formatDateTimeExact(lastChartTimestamp ? new Date(lastChartTimestamp).toISOString() : null)}</small>
           </div>
         </div>
-        {!chartData.some((reading) => reading.value != null) ? <EmptyState title={`Sensor ${meta.label} belum mengirim data`} description="Sensor mungkin belum terpasang atau perlu diperiksa koneksinya." /> : <div className="chart" role="img" aria-label={`Grafik tren ${meta.label}. ${freshnessLabel[freshness]}. Data terakhir ${formatDateTimeExact(lastTimestamp)}.`}>
+        {!chartData.some((reading) => reading.value != null) ? <EmptyState title={history.pending ? "Memuat riwayat sensor" : `Sensor ${meta.label} belum mengirim data`} description="Pembacaan lama akan ditampilkan jika pernah diterima pada akun ini." /> : <div className="chart" role="img" aria-label={`Grafik riwayat ${meta.label}. ${freshnessLabel[freshness]}.`}>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData} margin={{ top: 20, right: 18, left: 2, bottom: 8 }}>
               <defs><linearGradient id="telemetryFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#198AFF" stopOpacity={0.22} /><stop offset="100%" stopColor="#198AFF" stopOpacity={0.02} /></linearGradient></defs>
@@ -162,6 +167,7 @@ export function MonitoringPage() {
             </AreaChart>
           </ResponsiveContainer>
         </div>}
+        <SensorHistoryControls history={history} unavailable={selected?.latest_data?.[parameter] == null} parameter={parameter} />
         <div className="chart-axis-note"><span>Sumbu X: waktu pengukuran lokal</span><span>Sumbu Y: {meta.label} ({meta.unit || "skala pH"})</span></div>
         <details className="chart-data-table"><summary>Lihat angka pengukuran</summary><div className="table-wrap"><table><thead><tr><th>Waktu pengukuran</th><th>{meta.label} ({meta.unit || "skala pH"})</th></tr></thead><tbody>{chartData.map((reading, index) => <tr key={index}><td>{formatDateTimeExact(new Date(reading.time).toISOString())}</td><td>{formatNumber(reading.value)}</td></tr>)}</tbody></table></div></details>
       </section>

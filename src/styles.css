@@ -348,6 +348,42 @@ input, textarea { caret-color: var(--primary); }
 .route-view, .page > *, .panel, .metrics-grid, .table-wrap { min-width: 0; }
 .page { grid-template-columns: minmax(0, 1fr); }
 .route-view { animation: workspace-arrive 260ms cubic-bezier(.16, 1, .3, 1); }
+.sensor-history-controls { padding: 0 22px 12px; }
+.history-notice { display: grid; gap: 5px; padding: 12px 14px; margin-bottom: 12px; border-radius: 10px; color: var(--navy); background: var(--surface-muted, #edf4fb); font-size: .8rem; line-height: 1.5; }
+.history-notice span, .history-navigation > span { color: var(--muted); }
+.history-navigation, .history-navigation > div, .history-error { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.history-navigation, .history-error { font-size: .75rem; }
+.history-error { margin-top: 10px; color: var(--danger, #b42318); }
+.sensor-unavailable-label { display: block; font-size: .67rem; line-height: 1.4; color: inherit; }
+.alarm-settings-page { max-width: 1120px; }
+.alarm-device-picker { display: flex; align-items: end; gap: 20px; flex-wrap: wrap; }
+.alarm-device-picker label { flex: 1 1 260px; min-width: 0; }
+.alarm-device-picker span { flex: 1 1 200px; color: var(--muted); font-size: .8rem; }
+.alarm-settings-form { display: grid; gap: 18px; }
+.alarm-settings-intro { display: flex; gap: 12px; align-items: center; color: var(--muted); }
+.alarm-settings-intro > svg { flex: 0 0 auto; color: var(--primary); }
+.alarm-settings-intro p { margin: 0; max-width: 75ch; font-size: .85rem; }
+.alarm-parameters { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.alarm-parameter { padding: 20px; background: var(--surface, white); border: 1px solid var(--border); border-radius: 14px; min-width: 0; }
+.alarm-parameter-heading { display: flex; gap: 12px; align-items: center; }
+.alarm-parameter-heading > svg { color: var(--primary); flex: 0 0 auto; }
+.alarm-parameter-heading > div { flex: 1; min-width: 0; }
+.alarm-parameter h2 { margin: 0; font-size: .95rem; }
+.alarm-parameter p { margin: 4px 0 0; color: var(--muted); font-size: .75rem; }
+.alarm-fields { margin-top: 18px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.alarm-fields label { min-width: 0; font-size: .78rem; }
+.alarm-toggle { position: relative; min-width: 44px; min-height: 44px; display: grid; place-items: center; cursor: pointer; }
+.alarm-toggle input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.alarm-toggle > span { pointer-events: none; display: block; width: 40px; height: 24px; padding: 3px; border-radius: 20px; background: var(--muted); transition: background 180ms ease; }
+.alarm-toggle > span::after { content: ""; display: block; width: 18px; height: 18px; border-radius: 50%; background: white; transition: transform 180ms ease; }
+.alarm-toggle input:checked + span { background: var(--primary); }
+.alarm-toggle input:checked + span::after { transform: translateX(16px); }
+.alarm-toggle input:focus-visible + span { outline: 2px solid var(--primary); outline-offset: 4px; }
+.alarm-toggle input:disabled + span { opacity: .6; }
+.alarm-save-bar { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.alarm-save-bar p { color: var(--muted); margin: 0; font-size: .8rem; }
+.alarm-save-success { display: flex; gap: 8px; align-items: center; color: var(--teal, #087d78); font-size: .85rem; }
+@media (max-width: 620px) { .alarm-parameters { grid-template-columns: minmax(0, 1fr); } .alarm-save-bar .button { width: 100%; } .sensor-history-controls { padding-inline: 14px; } }
 @keyframes workspace-arrive { from { opacity: .65; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 .app-stage { isolation: isolate; }
 .mobile-dock { display: none; }

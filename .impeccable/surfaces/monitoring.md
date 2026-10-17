@@ -15,3 +15,7 @@ FIRST VIEWPORT: Header kompak; navigator perangkat selebar 248px di kiri; identi
 FORM: Struktur operasional dipatok oleh permintaan pengguna dan konfirmasi monitoring harian; gunakan kontrol web standar.
 
 FINISH: Perpindahan perangkat mempertahankan posisi grafik, parameter aktif memiliki isi biru dan aria-pressed. Grafik memakai kurva monotone-X, reveal dan transisi data 750ms ease-out, serta crossfade saat konteks berubah. Semua motion menghormati reduced motion; celah null tetap terputus dan nilai asli tetap tersedia. Lebar 320/360px wajib tidak memiliki page overflow. Navigasi cepat bawah memudahkan penggunaan mobile.
+
+HISTORY: Status parameter terkini terpisah dari histori. Tile bernilai null tetap bertanda “Tidak tersedia”; grafik berjudul Riwayat dapat mengambil jendela terakhir yang memiliki nilai, dengan timestamp asli, celah null, serta kontrol Lebih lama/Riwayat terbaru. Jangan menyalin pembacaan lama ke nilai terkini. Pengguna hanya dapat melihat histori assignment miliknya; admin dapat memeriksa seluruh histori perangkat.
+
+ALARMS: Menu Alarm → Atur alarm membuka /app/alerts/settings. Pilih perangkat milik akun, aktifkan parameter yang perlu diawasi, isi minimum/maksimum yang didukung backend, lalu simpan secara eksplisit. Off mengirim null; 0 tetap nilai valid. Pengaturan berlaku untuk alarm backend/mobile yang sama, bukan salinan preferensi browser.

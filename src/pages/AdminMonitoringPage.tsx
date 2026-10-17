@@ -9,6 +9,7 @@ import { formatDateTimeExact, formatNumber, formatRelative, parseApiDate } from 
 import { getTelemetryFreshness } from "../utils/telemetry";
 import { PageHeader } from "./UserDashboard";
 import { DeviceNavigator } from "../components/DeviceNavigator";
+import { SensorHistoryControls, useSensorHistory } from "../components/SensorHistory";
 
 const parameterMeta = {
   suhu: { label: "Suhu", unit: "°C" },
@@ -49,6 +50,7 @@ export function AdminMonitoringPage() {
 
   const selected = data?.devices.find((device) => device.id === deviceId);
   const meta = parameterMeta[parameter];
+  const history = useSensorHistory(deviceId, parameter, selected?.latest_data?.timestamp, selected?.historical_data || []);
   const selectedSummaries = useMemo(() => (Object.keys(parameterMeta) as Parameter[]).map((key) => {
     const values = (selected?.historical_data || []).map((reading) => reading[key]).filter((value): value is number => typeof value === "number");
     return {
@@ -60,11 +62,11 @@ export function AdminMonitoringPage() {
       attention: selected?.attention_parameters.includes(key) || false,
     };
   }), [selected]);
-  const samples = useMemo(() => (selected?.historical_data || []).flatMap((reading) => {
+  const samples = useMemo(() => history.readings.flatMap((reading) => {
     const time = reading.timestamp ? parseApiDate(reading.timestamp).getTime() : Number.NaN;
     const value = reading[parameter];
     return Number.isFinite(time) ? [{ time, value: value != null && Number.isFinite(value) ? value : null }] : [];
-  }), [selected, parameter]);
+  }), [history.readings, parameter]);
   const chartData = samples.some((reading) => reading.value != null) ? samples : [];
 
   if (!data && !error) return <PageLoader label="Memuat monitoring sensor" />;
@@ -88,12 +90,13 @@ export function AdminMonitoringPage() {
       </div>
       {getTelemetryFreshness(selected.latest_data?.timestamp, selected.connection_interval) !== "fresh" && <div className="monitor-data-notice" role="status"><WarningCircle size={19} aria-hidden="true" /><span>{selected.latest_data ? `Data tersimpan · ${formatRelative(selected.latest_data.timestamp)}` : "Belum ada pembacaan sensor"}</span></div>}
       <div className="admin-parameter-grid" aria-label={`Parameter terbaru ${selected.name || selected.uid}`}>
-        {selectedSummaries.map((item) => { const Icon = parameterIcons[item.key]; return <button aria-label={`${item.label}: ${item.value == null ? "Belum terbaca" : `${formatNumber(item.value)} ${item.unit}`}${item.attention ? ", perlu diperiksa" : ""}`} aria-pressed={parameter === item.key} onClick={() => setParameter(item.key)} className={`sensor-choice sensor-${item.key} ${parameter === item.key ? "selected" : ""} ${item.attention ? "attention" : ""} ${item.value == null ? "unavailable" : ""}`} key={item.key}><Icon className="sensor-symbol" size={22} weight="duotone" aria-hidden="true" /><span className="sensor-choice-label">{item.label}</span><strong>{item.value == null ? "—" : formatNumber(item.value)} <small>{item.value == null ? "" : item.unit}</small></strong>{item.attention && <WarningCircle className="sensor-attention" size={16} weight="fill" aria-label="Perlu diperiksa" />}</button>; })}
+        {selectedSummaries.map((item) => { const Icon = parameterIcons[item.key]; return <button aria-label={`${item.label}: ${item.value == null ? "Belum terbaca" : `${formatNumber(item.value)} ${item.unit}`}${item.attention ? ", perlu diperiksa" : ""}`} aria-pressed={parameter === item.key} onClick={() => setParameter(item.key)} className={`sensor-choice sensor-${item.key} ${parameter === item.key ? "selected" : ""} ${item.attention ? "attention" : ""} ${item.value == null ? "unavailable" : ""}`} key={item.key}><Icon className="sensor-symbol" size={22} weight="duotone" aria-hidden="true" /><span className="sensor-choice-label">{item.label}</span><strong>{item.value == null ? "—" : formatNumber(item.value)} <small>{item.value == null ? "" : item.unit}</small></strong>{item.value == null && <small className="sensor-unavailable-label">Tidak tersedia</small>}{item.attention && <WarningCircle className="sensor-attention" size={16} weight="fill" aria-label="Perlu diperiksa" />}</button>; })}
       </div>
 
     <section className="panel chart-panel" key={`${deviceId}-${parameter}`}>
-      <div className="chart-heading"><div><h2>Tren {meta.label.toLocaleLowerCase("id")}</h2><p>24 pengukuran terakhir · {meta.unit || "skala pH"}</p></div><div className="chart-timestamps"><strong>{formatNumber(selected.latest_data?.[parameter])} {meta.unit}</strong><small>{formatDateTimeExact(selected.latest_data?.timestamp)}</small></div></div>
-      {chartData.length === 0 ? <EmptyState title={`Sensor ${meta.label} belum mengirim data`} description="Sensor mungkin belum terpasang atau perlu diperiksa koneksinya." /> : <div className="chart" role="img" aria-label={`Grafik ${meta.label} untuk ${selected.name || selected.uid}`}><ResponsiveContainer width="100%" height="100%"><AreaChart data={chartData} margin={{ top: 18, right: 18, left: 2, bottom: 8 }}><defs><linearGradient id="adminSensorFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#147fe2" stopOpacity={.16} /><stop offset="100%" stopColor="#147fe2" stopOpacity={.01} /></linearGradient></defs><CartesianGrid stroke="#d9e3ee" strokeDasharray="4 6" vertical={false} /><XAxis dataKey="time" type="number" scale="time" domain={["dataMin", "dataMax"]} minTickGap={40} tickFormatter={(value) => new Intl.DateTimeFormat("id-ID", { hour: "2-digit", minute: "2-digit" }).format(new Date(value))} tickLine={false} tickMargin={10} /><YAxis domain={["auto", "auto"]} tickLine={false} axisLine={false} width={52} tickFormatter={(value) => formatNumber(Number(value))} /><Tooltip labelFormatter={(value) => formatDateTimeExact(new Date(Number(value)).toISOString())} formatter={(value) => [`${formatNumber(Number(value))} ${meta.unit}`, meta.label]} /><Area type="monotoneX" dataKey="value" stroke="#147fe2" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" fill="url(#adminSensorFill)" dot={false} activeDot={{ r: 5 }} connectNulls={false} isAnimationActive="auto" animationDuration={750} animationEasing="ease-out" /></AreaChart></ResponsiveContainer></div>}
+      <div className="chart-heading"><div><h2>{selected.latest_data?.[parameter] == null ? "Riwayat" : "Tren"} {meta.label.toLocaleLowerCase("id")}</h2><p>24 pengukuran terakhir · {meta.unit || "skala pH"}</p></div><div className="chart-timestamps"><strong>{formatNumber(selected.latest_data?.[parameter])} {meta.unit}</strong><small>{formatDateTimeExact(chartData.at(-1) ? new Date(chartData.at(-1)!.time).toISOString() : null)}</small></div></div>
+      {chartData.length === 0 ? <EmptyState title={history.pending ? "Memuat riwayat sensor" : `Sensor ${meta.label} belum mengirim data`} description="Sensor mungkin belum terpasang atau perlu diperiksa koneksinya." /> : <div className="chart" role="img" aria-label={`Grafik ${meta.label} untuk ${selected.name || selected.uid}`}><ResponsiveContainer width="100%" height="100%"><AreaChart data={chartData} margin={{ top: 18, right: 18, left: 2, bottom: 8 }}><defs><linearGradient id="adminSensorFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#147fe2" stopOpacity={.16} /><stop offset="100%" stopColor="#147fe2" stopOpacity={.01} /></linearGradient></defs><CartesianGrid stroke="#d9e3ee" strokeDasharray="4 6" vertical={false} /><XAxis dataKey="time" type="number" scale="time" domain={["dataMin", "dataMax"]} minTickGap={40} tickFormatter={(value) => new Intl.DateTimeFormat("id-ID", { hour: "2-digit", minute: "2-digit" }).format(new Date(value))} tickLine={false} tickMargin={10} /><YAxis domain={["auto", "auto"]} tickLine={false} axisLine={false} width={52} tickFormatter={(value) => formatNumber(Number(value))} /><Tooltip labelFormatter={(value) => formatDateTimeExact(new Date(Number(value)).toISOString())} formatter={(value) => [`${formatNumber(Number(value))} ${meta.unit}`, meta.label]} /><Area type="monotoneX" dataKey="value" stroke="#147fe2" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" fill="url(#adminSensorFill)" dot={false} activeDot={{ r: 5 }} connectNulls={false} isAnimationActive="auto" animationDuration={750} animationEasing="ease-out" /></AreaChart></ResponsiveContainer></div>}
+      <SensorHistoryControls history={history} unavailable={selected.latest_data?.[parameter] == null} parameter={parameter} />
       <div className="chart-axis-note"><span>Waktu pengukuran lokal</span><span>{meta.label} ({meta.unit || "skala pH"})</span></div>
       <details className="chart-data-table"><summary>Lihat angka pengukuran</summary><div className="table-wrap"><table><thead><tr><th>Waktu pengukuran</th><th>{meta.label} ({meta.unit || "skala pH"})</th></tr></thead><tbody>{chartData.map((reading, index) => <tr key={index}><td>{formatDateTimeExact(new Date(reading.time).toISOString())}</td><td>{formatNumber(reading.value)}</td></tr>)}</tbody></table></div></details>
     </section>

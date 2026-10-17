@@ -206,6 +206,12 @@ General panels use surface, a one-pixel border, and (22px) padding without shado
 
 Parameter controls are real buttons with `aria-pressed`, label, current value, unit, and reading state. Separate tiles use duotone icons and a one-pixel border. Selected controls use solid sensor-selected blue and white content; keyboard focus uses a cyan outline (3px) offset by (2px). Unavailable unselected tiles use a muted surface. Previous visible reading-state and meter rows are hidden. Charts show one parameter at a time, a local-time axis, and a native disclosure containing the numeric measurements. Use monotone-X curves with round strokes, preserve null gaps (`connectNulls=false`), and animate series entrance and data updates with reduced-motion support; wrapper context changes crossfade. Keep stale notices visible rather than implying live data.
 
+### Historical readings and alarm settings
+
+Unavailable live readings remain visibly unavailable even when an older chart exists. History charts preserve original timestamps and null gaps, with bounded backward pagination below the plot. Never fill live tiles with historical values. Historical status must use explanatory text, not only color.
+
+Alarm settings live under the user's Alarm menu, with a device selector and six native, keyboard-operable switches. Only enabled parameters reveal numeric bounds. Null disables a bound; zero is valid. Use explicit save feedback and retain entered values when saving fails. Layout is two columns on desktop and one column on phones. Admin history access does not grant permission to edit another user's thresholds.
+
 ### Fleet health, activities, and priorities
 
 The connectivity ring uses actual API counts, a four-item text legend, the online count in its center, and a monitoring link. Activity tiles pair duotone icons, counts, and labels. Priority cards preserve device identity, state text, and last-seen context without a dense overview table. Do not substitute decorative progress or invented counts.

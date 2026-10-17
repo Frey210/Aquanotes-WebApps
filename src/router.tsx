@@ -7,6 +7,7 @@ import { AdminDevicesPage } from "./pages/AdminDevicesPage";
 import { AdminUsersPage } from "./pages/AdminUsersPage";
 import { AdminFirmwarePage } from "./pages/AdminFirmwarePage";
 import { AlertsPage } from "./pages/AlertsPage";
+import { AlarmSettingsPage } from "./pages/AlarmSettingsPage";
 import { DevicesPage } from "./pages/DevicesPage";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
     { path: "/app/farms", element: <Suspense fallback={<PageLoader label="Memuat tambak" />}><FarmsPage /></Suspense> },
     { path: "/app/devices", element: <DevicesPage /> },
     { path: "/app/alerts", element: <AlertsPage /> },
+    { path: "/app/alerts/settings", element: <AlarmSettingsPage /> },
     { path: "/app/profile", element: <ProfilePage /> },
   ] }] },
   { element: <ProtectedRoute role="admin" />, children: [{ element: <AppShell />, children: [
